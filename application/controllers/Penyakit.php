@@ -9,13 +9,14 @@ class Penyakit extends My_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
-        $this->load->model('Users_model');
+        $this->load->model('Penyakit_model');
     }
 
     public function index()
     {
         $data['title'] = 'Data Penyakit';
-        $data['contents'] = $this->load->view('penyakit_view', '', true);
+        $data['penyakit'] = $this->Penyakit_model->get_all();
+        $data['contents'] = $this->load->view('penyakit_view', $data, true);
         $this->load->view('templates/admin_templates', $data);
     }
 }

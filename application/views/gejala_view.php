@@ -19,9 +19,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td colspan="5" class="text-center">Tidak ada data</td>
-                        </tr>
+                        <?php if (count($gejala) > 0) : ?>
+                            <?php foreach ($gejala as $key => $item) : ?>
+                                <tr>
+                                    <td><?= $key + 1 ?></td>
+                                    <td><?= $item['kode']; ?></td>
+                                    <td><?= $item['nama']; ?></td>
+                                    <td><?= $item['deskripsi']; ?></td>
+                                    <td width="10%" class="text-end">
+                                        <div>
+                                            <a href="" class="text-primary">Edit</a> || <a href="" class="text-danger">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="5" class="text-center">Tidak ada data</td>
+                            </tr>
+                        <?php endif ?>
                     </tbody>
                 </table>
             </div>

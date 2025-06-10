@@ -9,12 +9,14 @@ class Riwayat extends My_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
+        $this->load->model('Riwayat_model');
     }
 
     public function index()
     {
         $data['title'] = 'Data Riwayat';
-        $data['contents'] = $this->load->view('riwayat_view', '', true);
+        $data['riwayat'] = $this->Riwayat_model->get_all();
+        $data['contents'] = $this->load->view('riwayat_view', $data, true);
         $this->load->view('templates/admin_templates', $data);
     }
 }

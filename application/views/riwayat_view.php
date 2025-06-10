@@ -22,19 +22,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1.</td>
-                            <td>Muhammad Abdul Ali</td>
-                            <td>Jl. Pangeran Gresik 23</td>
-                            <td>Laki-laki</td>
-                            <td>27 Tahun</td>
-                            <td><a href="">G01</a>, <a href="">G01</a>, </td>
-                            <td>Pulpitis Irreversible</td>
-                            <td><a href="">Edit</a> || <a href="">Hapus</a></td>
-                        </tr>
-                        <!-- <tr>
-                            <td colspan="8" class="text-center">Tidak ada data</td>
-                        </tr> -->
+                        <?php if (count($riwayat) > 0) : ?>
+                            <?php foreach ($riwayat as $key => $item) : ?>
+                                <tr>
+                                    <td><?= $key + 1 ?></td>
+                                    <td><?= $item['nama']; ?></td>
+                                    <td><?= $item['alamat']; ?></td>
+                                    <td><?= $item['jenis_kelamin'] == 'L' ? 'Laki-laki' : 'Perempuan'; ?></td>
+                                    <td><?= $item['umur']; ?> Tahun</td>
+                                    <td><?= $item['gejala_kode']; ?></td>
+                                    <td><span class="fst-italic"><?= $item['nama_penyakit']; ?></span></td>
+                                    <td width="10%" class="text-end">
+                                        <div>
+                                            <a href="" class="text-primary">Edit</a> || <a href="" class="text-danger">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="5" class="text-center">Tidak ada data</td>
+                            </tr>
+                        <?php endif ?>
                     </tbody>
                 </table>
             </div>

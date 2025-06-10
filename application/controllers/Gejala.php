@@ -9,13 +9,15 @@ class Gejala extends My_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
-        $this->load->model('Users_model');
+        $this->load->model('Gejala_model');
     }
 
     public function index()
     {
         $data['title'] = 'Data Gejala';
-        $data['contents'] = $this->load->view('gejala_view', '', true);
+        $data['gejala'] = $this->Gejala_model->get_all();
+
+        $data['contents'] = $this->load->view('gejala_view', $data, true);
         $this->load->view('templates/admin_templates', $data);
     }
 }
