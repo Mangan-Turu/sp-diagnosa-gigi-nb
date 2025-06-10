@@ -1,8 +1,6 @@
 <!-- Appointment Section -->
 <section id="appointment" class="appointment section light-background">
 
-
-
     <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
         <h2>MAKE AN APPOINTMENT</h2>
@@ -21,14 +19,20 @@
                                 Jawaban Anda akan membantu sistem dalam menganalisis kemungkinan gangguan kecemasan yang Anda alami secara lebih akurat.
                             </p>
 
-                            <div class="form-group">
-                                <div class="form-check mb-3">
-                                    <input class="form-check-input" type="checkbox" name="gejala[]" value="G01" id="g01">
-                                    <label class="form-check-label" for="g01">
-                                        [G01] - Merasa cemas berlebihan tanpa alasan yang jelas
-                                    </label>
-                                </div>
-                            </div>
+                            <?php if (isset($gejala) && is_array($gejala) && count($gejala) > 0) : ?>
+                                <?php foreach ($gejala as $item) : ?>
+                                    <div class="form-group">
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" name="gejala[]" value="<?= isset($item['kode']) ? html_escape($item['kode']) : ''; ?>" id="<?= isset($item['kode']) ? html_escape($item['kode']) : ''; ?>">
+                                            <label class="form-check-label" for="<?= isset($item['kode']) ? html_escape($item['kode']) : ''; ?>">
+                                                [<?= isset($item['kode']) ? html_escape($item['kode']) : ''; ?>] - <?= isset($item['nama']) ? html_escape($item['nama']) : ''; ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                <?php endforeach ?>
+                            <?php else : ?>
+                                <p>Tidak ada gejala yang tersedia.</p>
+                            <?php endif; ?>
 
                             <!-- button sbmit -->
                             <div class="text-center">

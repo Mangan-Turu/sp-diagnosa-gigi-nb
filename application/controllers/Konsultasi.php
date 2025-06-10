@@ -9,13 +9,15 @@ class Konsultasi extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
-        $this->load->model('Users_model');
+        $this->load->model('Gejala_model');
         check_role($this->for_role);
     }
 
     public function index()
     {
-        $data['contents'] = $this->load->view('konsultasi_view', '', true);
+        $data['gejala'] = $this->Gejala_model->get_all();
+
+        $data['contents'] = $this->load->view('konsultasi_view', $data, true);
         $this->load->view('templates/user_templates', $data);
     }
 }

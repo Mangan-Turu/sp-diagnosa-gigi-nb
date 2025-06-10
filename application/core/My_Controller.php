@@ -21,24 +21,24 @@ class My_Controller extends CI_Controller
         $isLoggedIn = $ci->session->userdata('is_logged_in');
         $userRole   = $ci->session->userdata('role');
 
-        if(!$isLoggedIn) {
+        if (!$isLoggedIn) {
             $ci->session->set_flashdata('alert_danger', 'Anda harus login terlebih dahulu.');
             redirect('login');
         }
 
-        if(!$userRole) {
+        if (!$userRole) {
             $ci->session->set_flashdata('alert_danger', 'Peran pengguna tidak ditemukan.');
             redirect('login');
         }
 
-        if($userRole === 'admin') {
-            redirect('dashboard');
-        }
-
-        if($userRole === 'user') {
+        if ($userRole === 'user') {
             redirect('konsultasi');
         }
 
+        if ($userRole !== $requiredRole) {
+            $ci->session->set_flashdata('alert_danger', 'Anda tidak memiliki akses sebagai ' . $requiredRole . '.');
+            redirect('login');
+        }
     }
 
     public function check_role_any($allowedRoles = [])
