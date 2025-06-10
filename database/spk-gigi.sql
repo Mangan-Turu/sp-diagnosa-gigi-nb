@@ -88,3 +88,12 @@ CREATE TABLE t_riwayat (
     FOREIGN KEY (penyakit_id) REFERENCES m_penyakit(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
+
+CREATE TABLE t_himpunan (
+    id INT PRIMARY KEY,
+    variabel VARCHAR(50),
+    batas_bawah DECIMAL(3,2),
+    batas_atas DECIMAL(3,2),
+    created_at DATETIME,
+    update_at DATETIME
+);

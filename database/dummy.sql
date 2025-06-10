@@ -46,9 +46,9 @@ VALUES
 INSERT INTO users (nama, alamat, role, username, email, password, created_at)
 VALUES
 ('Admin Sistem', 'Jl. Pusat No. 1', 'admin', 'admin', 'admin@gigi.com', '$2y$10$uQ8F6F8sddLRHzI6CmQ7d.Ox7fEnTnC0/NXylGH0wZES9AzAp.xpC', NOW()), -- admin123
-('Dewi Lestari', 'Jl. Melati No. 2', 'pasien', 'dewi', 'dewi@email.com', '$2y$10$WkX9V3Z0E/OLdKYQcbiFDuZ5s7M6iIQrQkTQ31KZPEF6Tw47YBqjS', NOW()), -- dewi123
-('Budi Santoso', 'Jl. Mawar No. 5', 'pasien', 'budi', 'budi@email.com', '$2y$10$U5W.7YzA2FE3vB7CmT4cpeBDUT5avm3Uv6ZJBS9H.7j3ThjQoWhuC', NOW()), -- budi123
-('Siti Aminah', 'Jl. Anggrek No. 7', 'pasien', 'siti', 'siti@email.com', '$2y$10$nHbZkWztGkYH6mnokDlmyumMeO8c9UR8j2PoX2/Vng1G8uzHQLIUe', NOW()); -- siti123
+('Dewi Lestari', 'Jl. Melati No. 2', 'user', 'dewi', 'dewi@email.com', '$2y$10$WkX9V3Z0E/OLdKYQcbiFDuZ5s7M6iIQrQkTQ31KZPEF6Tw47YBqjS', NOW()), -- dewi123
+('Budi Santoso', 'Jl. Mawar No. 5', 'user', 'budi', 'budi@email.com', '$2y$10$U5W.7YzA2FE3vB7CmT4cpeBDUT5avm3Uv6ZJBS9H.7j3ThjQoWhuC', NOW()), -- budi123
+('Siti Aminah', 'Jl. Anggrek No. 7', 'user', 'siti', 'siti@email.com', '$2y$10$nHbZkWztGkYH6mnokDlmyumMeO8c9UR8j2PoX2/Vng1G8uzHQLIUe', NOW()); -- siti123
 
 -- ===========================
 -- Dummy Data: t_riwayat
@@ -65,3 +65,9 @@ VALUES
 (3, 'Budi Santoso', 'Jl. Mawar No. 5', 'L', 35, '7,9,10', 4, NOW(), 1),
 (4, 'Siti Aminah', 'Jl. Anggrek No. 7', 'P', 22, '2,5', 1, NOW(), 1),
 (2, 'Dewi Lestari', 'Jl. Melati No. 2', 'P', 27, '1,2,3,4', 1, NOW(), 1);
+
+INSERT INTO t_himpunan (id, variabel, batas_bawah, batas_atas) VALUES
+(1, 'Mungkin', 0.00, 0.30),
+(2, 'Sangat Mungkin', 0.30, 0.50),
+(3, 'Pasti', 0.50, 0.80),
+(4, 'Sangat Pasti', 0.80, 1.00);
