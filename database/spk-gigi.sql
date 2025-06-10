@@ -97,3 +97,15 @@ CREATE TABLE t_himpunan (
     created_at DATETIME,
     update_at DATETIME
 );
+
+CREATE TABLE t_riwayat_detail (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    riwayat_id INT NOT NULL,
+    gejala_id INT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    -- Opsional: Foreign key constraints jika ada relasi ke tabel lain
+    FOREIGN KEY (riwayat_id) REFERENCES t_riwayat(id),
+    FOREIGN KEY (gejala_id) REFERENCES m_gejala(id)
+);

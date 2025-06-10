@@ -1,6 +1,6 @@
 <div class="login-box">
     <div class="login-logo">
-        <a href="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/index2.html"><b>Admin</b>LTE</a>
+        <a href="<?= base_url('/'); ?>"><b>Sistem Pakar Diagnosa Penyakit Gigi</a>
     </div>
 
     <?php if ($this->session->flashdata('alert_danger')): ?>

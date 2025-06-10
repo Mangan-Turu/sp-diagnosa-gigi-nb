@@ -1,6 +1,6 @@
 <div class="login-box">
     <div class="login-logo">
-        <a href="<?= base_url('/'); ?>"><b>Register</b></a>
+        <a href="<?= base_url('/'); ?>"><b>Sistem Pakar Diagnosa Penyakit Gigi</a>
     </div>
 
     <!-- alert -->
@@ -71,7 +71,7 @@
             </form>
 
             <p class="mb-0 mt-2">
-                Sudah memiliki akun  ? <a href="<?= base_url('/login'); ?>" class="text-center">Login</a>
+                Sudah memiliki akun ? <a href="<?= base_url('/login'); ?>" class="text-center">Login</a>
             </p>
         </div>
         <!-- /.login-card-body -->

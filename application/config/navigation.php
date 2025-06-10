@@ -10,13 +10,6 @@ $config['navigation'] = [
         'role' => ['admin'],
     ],
     [
-        'label' => 'Data Penyakit',
-        'icon' => 'fas fa-virus',
-        'url' => 'penyakit',
-        'active' => ['penyakit'],
-        'role' => ['admin'],
-    ],
-    [
         'label' => 'Data Gejala',
         'icon' => 'fas fa-stethoscope',
         'url' => 'gejala',
@@ -24,8 +17,15 @@ $config['navigation'] = [
         'role' => ['admin'],
     ],
     [
+        'label' => 'Data Penyakit',
+        'icon' => 'fas fa-virus',
+        'url' => 'penyakit',
+        'active' => ['penyakit'],
+        'role' => ['admin'],
+    ],
+    [
         'label' => 'Riwayat Diagnosa',
-        'icon' => 'fas fa-stethoscope',
+        'icon' => 'fas fa-history',
         'url' => 'riwayat',
         'active' => ['riwayat'],
         'role' => ['admin'],
