@@ -15,7 +15,7 @@
                             <th>Umur</th>
                             <th>Gejala</th>
                             <th>Hasil Diagnosa</th>
-                            <th>Aksi</th>
+                            <!-- <th>Aksi</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -29,11 +29,11 @@
                                     <td><?= $item['umur']; ?> Tahun</td>
                                     <td><?= $item['gejala_kode']; ?></td>
                                     <td><span class="fst-italic"><?= $item['nama_penyakit']; ?></span></td>
-                                    <td width="10%" class="text-end">
+                                    <!-- <td width="10%" class="text-end">
                                         <div>
                                             <a href="" class="text-primary">Edit</a> || <a href="" class="text-danger">Delete</a>
                                         </div>
-                                    </td>
+                                    </td> -->
                                 </tr>
                             <?php endforeach ?>
                         <?php else: ?>
