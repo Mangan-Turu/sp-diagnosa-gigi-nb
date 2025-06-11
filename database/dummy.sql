@@ -53,18 +53,18 @@ VALUES
 -- ===========================
 -- Dummy Data: t_riwayat
 -- ===========================
-INSERT INTO t_riwayat (user_id, nama, alamat, jenis_kelamin, umur, gejala_ids, penyakit_id, created_at, created_by)
+INSERT INTO t_riwayat (user_id, nama, alamat, jenis_kelamin, umur, penyakit_id, created_at, created_by)
 VALUES
-(2, 'Dewi Lestari', 'Jl. Melati No. 2', 'P', 27, '1,2,5', 1, NOW(), 1),
-(2, 'Dewi Lestari', 'Jl. Melati No. 2', 'P', 27, '3,6', 2, NOW(), 1),
-(3, 'Budi Santoso', 'Jl. Mawar No. 5', 'L', 35, '3,6,8', 3, NOW(), 1),
-(4, 'Siti Aminah', 'Jl. Anggrek No. 7', 'P', 22, '7,9', 4, NOW(), 1),
-(3, 'Budi Santoso', 'Jl. Mawar No. 5', 'L', 35, '1,5', 1, NOW(), 1),
-(4, 'Siti Aminah', 'Jl. Anggrek No. 7', 'P', 22, '4,3', 2, NOW(), 1),
-(2, 'Dewi Lestari', 'Jl. Melati No. 2', 'P', 27, '6,8', 3, NOW(), 1),
-(3, 'Budi Santoso', 'Jl. Mawar No. 5', 'L', 35, '7,9,10', 4, NOW(), 1),
-(4, 'Siti Aminah', 'Jl. Anggrek No. 7', 'P', 22, '2,5', 1, NOW(), 1),
-(2, 'Dewi Lestari', 'Jl. Melati No. 2', 'P', 27, '1,2,3,4', 1, NOW(), 1);
+(2, 'Dewi Lestari', 'Jl. Melati No. 2', 'P', 27, 1, NOW(), 1),
+(2, 'Dewi Lestari', 'Jl. Melati No. 2', 'P', 27, 2, NOW(), 1),
+(3, 'Budi Santoso', 'Jl. Mawar No. 5', 'L', 35, 3, NOW(), 1),
+(4, 'Siti Aminah', 'Jl. Anggrek No. 7', 'P', 22, 4, NOW(), 1),
+(3, 'Budi Santoso', 'Jl. Mawar No. 5', 'L', 35, 1, NOW(), 1),
+(4, 'Siti Aminah', 'Jl. Anggrek No. 7', 'P', 22, 2, NOW(), 1),
+(2, 'Dewi Lestari', 'Jl. Melati No. 2', 'P', 27, 3, NOW(), 1),
+(3, 'Budi Santoso', 'Jl. Mawar No. 5', 'L', 35, 4, NOW(), 1),
+(4, 'Siti Aminah', 'Jl. Anggrek No. 7', 'P', 22, 1, NOW(), 1),
+(2, 'Dewi Lestari', 'Jl. Melati No. 2', 'P', 27, 1, NOW(), 1);
 
 INSERT INTO t_himpunan (id, variabel, batas_bawah, batas_atas) VALUES
 (1, 'Mungkin', 0.00, 0.30),

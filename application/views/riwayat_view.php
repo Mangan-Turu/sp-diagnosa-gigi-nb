@@ -3,9 +3,6 @@
         <div class="card">
             <div class="card-header">
                 <h2 class="card-title">Data Riwayat Diagnosa</h2>
-                <div class="card-tools">
-                    <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#tambahPengguna" id="btnTambahPengguna">Tambah Gejala</button>
-                </div>
             </div>
             <div class="card-body">
                 <table id="datatable-pengguna" class="table table-bordered table-striped">

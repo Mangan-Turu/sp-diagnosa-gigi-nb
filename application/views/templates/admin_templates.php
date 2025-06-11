@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Diagnosa Gigi | <?= isset($title) ? $title : ''; ?></title>
+    <title><?= isset($title) ? $title : 'Tidak ada judul'; ?></title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -26,14 +26,27 @@
     <link rel="stylesheet" href="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/plugins/summernote/summernote-bs4.min.css">
+    <script src="<?= base_url(); ?>/assets/templates/AdminLTE-3.2.0/dist/js/sweetalert.js"></script>
 
-    <style>
-        table tr th, 
-        table tr td {
-            padding-top: 5px !important;
-            padding-bottom: 5px !important;
-        }
-    </style>
+    <!-- swal -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <!-- DataTables -->
+    <link rel="stylesheet" href="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+    <!-- Jquery -->
+    <script src="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
+    <!-- Custom CSS and JS -->
+    <script>
+        const isAdmin = <?= $this->session->userdata('role') === 'admin' ? 'true' : 'false' ?>;
+    </script>
+    <!-- End Custom CSS and JS -->
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -170,28 +183,29 @@
                 </li>
             </ul>
         </nav>
-        <!-- /.navbar -->
 
-        <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
                 <img src="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
+                <span class="brand-text font-weight-light">SPK Diagnosa Gigi</span>
             </a>
 
-            <!-- Sidebar -->
             <?php
             $current = $this->uri->segment(1);
             $navigation = $this->config->item('navigation');
+            $userRole = $this->session->userdata('role'); 
             ?>
 
             <div class="sidebar">
-                <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                         <?php foreach ($navigation as $item): ?>
                             <?php
+                            if (!in_array($userRole, $item['role'])) {
+                                continue;
+                            }
+
                             $isActive = in_array($current, $item['active']);
                             $hasChildren = isset($item['children']);
                             ?>
@@ -207,6 +221,11 @@
                                 <?php if ($hasChildren): ?>
                                     <ul class="nav nav-treeview">
                                         <?php foreach ($item['children'] as $child): ?>
+                                            <?php
+                                            if (isset($child['role']) && !in_array($userRole, $child['role'])) {
+                                                continue;
+                                            }
+                                            ?>
                                             <li class="nav-item">
                                                 <a href="<?= base_url($child['url']) ?>" class="nav-link <?= in_array($current, $child['active']) ? 'active' : '' ?>">
                                                     <i class="far fa-circle nav-icon"></i>
@@ -221,47 +240,57 @@
                     </ul>
                 </nav>
             </div>
-            <!-- /.sidebar -->
 
         </aside>
 
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper py-4">
+        <div class="content-wrapper">
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Dashboard v1</li>
+                            </ol>
+                    </div>
+                </div>
+            </div>
 
-            <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
-                    <!-- Main row -->
+
+                    <div class="row">
+                        <div class="col">
+                            <?php if ($this->session->flashdata('alert_danger')): ?>
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <?= $this->session->flashdata('alert_danger') ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if ($this->session->flashdata('alert_success')): ?>
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <?= $this->session->flashdata('alert_success') ?>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
 
                     <?= $contents; ?>
 
-                    <!-- /.row (main row) -->
-                </div><!-- /.container-fluid -->
+                </div>
             </section>
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
-        <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.2.0
-            </div>
-        </footer>
 
-        <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
         </aside>
-        <!-- /.control-sidebar -->
     </div>
-    <!-- ./wrapper -->
 
-    <!-- jQuery -->
-    <script src="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/plugins/jquery/jquery.min.js"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button)
     </script>
@@ -287,11 +316,39 @@
     <script src="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/dist/js/adminlte.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/dist/js/demo.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <!-- <script src="</?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/dist/js/pages/dashboard.js"></script> -->
 
+    <!-- DataTables  & Plugins -->
+    <script src="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="<?= base_url('assets/templates/AdminLTE-3.2.0'); ?>/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).on('click', '.btn-confirm-delete', function(e) {
+            e.preventDefault();
+
+            const deleteUrl = $(this).data('url');
+            const message = $(this).data('message') || 'Yakin ingin menghapus data ini?';
+
+            Swal.fire({
+                title: 'Konfirmasi Hapus',
+                text: message,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed && deleteUrl) {
+                    window.location.href = deleteUrl;
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -76,7 +76,6 @@ CREATE TABLE t_riwayat (
     alamat TEXT,
     jenis_kelamin ENUM('L','P'),
     umur INT,
-    gejala_ids TEXT, 
     penyakit_id INT,
     created_at DATETIME,
     created_by INT,
