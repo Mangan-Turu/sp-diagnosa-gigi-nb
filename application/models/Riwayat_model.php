@@ -41,4 +41,42 @@ class Riwayat_model extends CI_Model
             return [];
         }
     }
+
+    public function get_by_id($riwayat_id)
+    {
+        $this->db->select('
+            t_riwayat.id as riwayat_id, t_riwayat.user_id, t_riwayat.nama as user_nama, t_riwayat.alamat, t_riwayat.jenis_kelamin, t_riwayat.umur, t_riwayat.no_hp,
+            m_gejala.id as gejala_id,m_gejala.kode as gejala_kode, m_gejala.nama as gejala_nama');
+        $this->db->from('t_riwayat');
+        $this->db->join('t_riwayat_detail', 't_riwayat.id = t_riwayat_detail.riwayat_id');
+        $this->db->join('m_gejala', 'm_gejala.id = t_riwayat_detail.gejala_id');
+        $this->db->where('t_riwayat.id', $riwayat_id);
+
+        $query = $this->db->get();
+        $result = $query->result();
+
+        if (empty($result)) return null;
+
+        $data = [
+            'id' => $result[0]->riwayat_id,
+            'user_id' => $result[0]->user_id,
+            'nama_user' => $result[0]->user_nama,
+            'alamat' => $result[0]->alamat,
+            'jenis_kelamin' => $result[0]->jenis_kelamin,
+            'umur' => $result[0]->umur,
+            'no_hp' => $result[0]->no_hp,
+            'gejala' => []
+        ];
+
+        foreach ($result as $row) {
+            $data['gejala'][] = [
+                'id' => $row->gejala_id,
+                'kode' => $row->gejala_kode,
+                'nama' => $row->gejala_nama,
+                'nilai' => 1
+            ];
+        }
+
+        return $data;
+    }
 }

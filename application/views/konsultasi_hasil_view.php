@@ -37,7 +37,7 @@
                                 </tr>
                                 <tr>
                                     <td>Hasil</td>
-                                    <td class="fst-italic"><?= $riwayat->nama_penyakit ?></td>
+                                    <td class="fst-italic"><?= $hasil ?></td>
                                 </tr>
                             <?php else: ?>
                                 <tr>
