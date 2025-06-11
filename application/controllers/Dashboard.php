@@ -14,7 +14,8 @@ class Dashboard extends My_Controller
 
     public function index()
     {
-        $data['contents'] = $this->load->view('dashboard_view', '', true);
+        $data['title'] = 'Dashboard';
+        $data['contents'] = $this->load->view('dashboard_view', $data, true);
         $this->load->view('templates/admin_templates', $data);
     }
 }
