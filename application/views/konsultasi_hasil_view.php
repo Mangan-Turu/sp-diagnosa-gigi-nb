@@ -21,7 +21,7 @@
                                 </tr>
                                 <tr>
                                     <td>Alamat</td>
-                                    <td><?= $riwayat->alamat; ?></td>
+                                    <td><?= $riwayat->alamat ?? 'Tidak ada'; ?></td>
                                 </tr>
                                 <tr>
                                     <td width="25%">Jenis Kelamin</td>
@@ -29,15 +29,15 @@
                                 </tr>
                                 <tr>
                                     <td>Umur</td>
-                                    <td><?= $riwayat->umur; ?> Tahun</td>
+                                    <td><?= $riwayat->umur ?? '--'; ?> Tahun</td>
                                 </tr>
                                 <tr>
                                     <td>No. HP</td>
-                                    <td><?= $riwayat->no_hp; ?></td>
+                                    <td><?= $riwayat->no_hp ?? 'Tidak ada'; ?></td>
                                 </tr>
                                 <tr>
                                     <td>Hasil</td>
-                                    <td class="fst-italic"><?= $hasil ?></td>
+                                    <td class="fst-italic text-danger"><?= $riwayat->nama_penyakit ?? 'Tidak ada' ?></td>
                                 </tr>
                             <?php else: ?>
                                 <tr>

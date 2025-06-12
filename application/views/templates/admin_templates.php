@@ -47,6 +47,15 @@
         const isAdmin = <?= $this->session->userdata('role') === 'admin' ? 'true' : 'false' ?>;
     </script>
     <!-- End Custom CSS and JS -->
+
+    <style>
+        table tr th,
+        table tr td 
+        {
+            padding-top: 5px !important;
+            padding-bottom: 5px !important;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

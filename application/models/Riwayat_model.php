@@ -79,4 +79,11 @@ class Riwayat_model extends CI_Model
 
         return $data;
     }
+
+    public function update_penyakit_id($riwayat_id, $penyakit_id, $probabilitas)
+    {
+        $this->db->where('id', $riwayat_id);
+        $this->db->update($this->table_def, ['penyakit_id' => $penyakit_id, 'probabilitas' => $probabilitas]);
+        return $this->db->affected_rows() > 0;
+    }
 }

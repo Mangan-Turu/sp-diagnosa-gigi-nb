@@ -28,14 +28,22 @@ class Konsultasi extends CI_Controller
 
     public function hasil()
     {
-        $riwayat_id = $this->input->get('id');
-        $get_hasil = $this->hitung($riwayat_id);
+        for ($i = 1; $i <= 50; $i++) {
+            $riwayat_id = $i;
+            $get_hasil = $this->hitung($riwayat_id);
+
+            $this->Riwayat_model->update_penyakit_id($riwayat_id, $get_hasil['penyakit_id'], $get_hasil['probabilitas']);
+        }
+
+        // $riwayat_id = $this->input->get('id');
+        // $get_hasil = $this->hitung($riwayat_id);
+
+        // $this->Riwayat_model->update_penyakit_id($riwayat_id, $get_hasil['penyakit_id'], $get_hasil['probabilitas']);
 
         $data['riwayat'] = null;
 
         if ($riwayat_id) {
             $data['riwayat'] = $this->Konsultasi_model->get_by_id($riwayat_id);
-            $data['hasil'] = $get_hasil['penyakit_nama'] ?? '-';
         }
 
         $data['title'] = 'Hasil Konsultasi';
@@ -80,6 +88,7 @@ class Konsultasi extends CI_Controller
             redirect('konsultasi/hasil?id=' . $result);
         }
     }
+
 
     public function hitung($id)
     {
@@ -189,9 +198,9 @@ class Konsultasi extends CI_Controller
             ];
         }
 
-        // echo "<pre>";
-        // print_r($probabilitas);
-        // echo "</pre>";
+        echo "<pre>";
+        print_r($probabilitas);
+        echo "</pre>";
 
         // 4. Hasil
         // ambil hasil terbesar
@@ -211,7 +220,7 @@ class Konsultasi extends CI_Controller
         // echo "<pre>";
         // print_r($hasil);
         // echo "</pre>";
-        
+
         return $hasil;
     }
 

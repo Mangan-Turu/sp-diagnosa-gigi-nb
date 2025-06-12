@@ -3,6 +3,12 @@
         <div class="card">
             <div class="card-header">
                 <h2 class="card-title">Data Riwayat Diagnosa</h2>
+
+                <div class="card-tools">
+                    <a href="<?= base_url('riwayat/perhitungan'); ?>" class="btn btn-success btn-sm">
+                        Lihat Perhitungan
+                    </a>
+                </div>
             </div>
             <div class="card-body">
                 <table id="datatable-pengguna" class="table table-bordered table-striped">
@@ -14,6 +20,7 @@
                             <th>Jenis Kelamin</th>
                             <th>Umur</th>
                             <th>Gejala</th>
+                            <th>Probabilitas</th>
                             <th>Hasil Diagnosa</th>
                             <!-- <th>Aksi</th> -->
                         </tr>
@@ -28,6 +35,7 @@
                                     <td><?= $item['jenis_kelamin'] == 'L' ? 'Laki-laki' : 'Perempuan'; ?></td>
                                     <td><?= $item['umur']; ?> Tahun</td>
                                     <td><?= $item['gejala_kode']; ?></td>
+                                    <td><?= $item['probabilitas']; ?></td>
                                     <td><span class="fst-italic"><?= $item['nama_penyakit']; ?></span></td>
                                     <!-- <td width="10%" class="text-end">
                                         <div>
