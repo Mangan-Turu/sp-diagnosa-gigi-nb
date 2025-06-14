@@ -28,17 +28,17 @@ class Konsultasi extends CI_Controller
 
     public function hasil()
     {
-        for ($i = 1; $i <= 50; $i++) {
-            $riwayat_id = $i;
-            $get_hasil = $this->hitung($riwayat_id);
+        // for ($i = 1; $i <= 50; $i++) {
+        //     $riwayat_id = $i;
+        //     $get_hasil = $this->hitung($riwayat_id);
 
-            $this->Riwayat_model->update_penyakit_id($riwayat_id, $get_hasil['penyakit_id'], $get_hasil['probabilitas']);
-        }
+        //     $this->Riwayat_model->update_penyakit_id($riwayat_id, $get_hasil['penyakit_id'], $get_hasil['probabilitas']);
+        // }
 
-        // $riwayat_id = $this->input->get('id');
-        // $get_hasil = $this->hitung($riwayat_id);
+        $riwayat_id = $this->input->get('id');
+        $get_hasil = $this->hitung($riwayat_id);
 
-        // $this->Riwayat_model->update_penyakit_id($riwayat_id, $get_hasil['penyakit_id'], $get_hasil['probabilitas']);
+        $this->Riwayat_model->update_penyakit_id($riwayat_id, $get_hasil['penyakit_id'], $get_hasil['probabilitas']);
 
         $data['riwayat'] = null;
 
@@ -135,7 +135,9 @@ class Konsultasi extends CI_Controller
                 'rules'             => $rule,
             ];
 
-            $tmp['nilai_nc'] = number_format($tmp['n'] / $tmp['total_penyakit'], 4, '.', '');
+            $nilai_nc_f = $tmp['n'] / $tmp['total_penyakit'];
+            $nilai_nc_f = floor($nilai_nc_f * 1000) / 1000;
+            $tmp['nilai_nc'] = $nilai_nc_f;
 
             $nilai_nc[] = $tmp;
         }
@@ -198,9 +200,9 @@ class Konsultasi extends CI_Controller
             ];
         }
 
-        echo "<pre>";
-        print_r($probabilitas);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($probabilitas);
+        // echo "</pre>";
 
         // 4. Hasil
         // ambil hasil terbesar

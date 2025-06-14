@@ -96,7 +96,9 @@ class Riwayat extends My_Controller
                 'rules'             => $rule,
             ];
 
-            $tmp['nilai_nc'] = number_format($tmp['n'] / $tmp['total_penyakit'], 4, '.', '');
+            $nilai_nc_f = $tmp['n'] / $tmp['total_penyakit'];
+            $nilai_nc_f = floor($nilai_nc_f * 1000) / 1000;
+            $tmp['nilai_nc'] = $nilai_nc_f;
 
             $nilai_nc[] = $tmp;
         }
@@ -130,7 +132,7 @@ class Riwayat extends My_Controller
                     'gejala_id'       => $rule['gejala_id'],
                     'gejala_kode'     => $rule['gejala_kode'],
                     'gejala_selected' => $rule['gejala_selected'],
-                    'nilai_p'         => round($result, 4)
+                    'nilai_p'         => floor($result * 1000) / 1000,
                 ];
             }
 
@@ -144,7 +146,9 @@ class Riwayat extends My_Controller
         foreach ($nilai_p as $index => $item) {
             $hasil_perkalian = 1;
             foreach ($item['rules'] as $r) {
-                $hasil_perkalian *= $r['nilai_p'];
+                $nilai = $r['nilai_p'];
+                $nilai_terpotong = floor($nilai * 1000) / 1000;
+                $hasil_perkalian *= number_format($r['nilai_p'], 3, '.', '');
             }
 
             $result = $item['nilai_nc'] * $hasil_perkalian;
