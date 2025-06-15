@@ -22,7 +22,7 @@
                             <th>Gejala</th>
                             <th>Probabilitas</th>
                             <th>Hasil Diagnosa</th>
-                            <!-- <th>Aksi</th> -->
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -37,11 +37,11 @@
                                     <td><?= $item['gejala_kode']; ?></td>
                                     <td><?= $item['probabilitas']; ?></td>
                                     <td><span class="fst-italic"><?= $item['nama_penyakit']; ?></span></td>
-                                    <!-- <td width="10%" class="text-end">
+                                    <td width="10%" class="text-end">
                                         <div>
-                                            <a href="" class="text-primary">Edit</a> || <a href="" class="text-danger">Delete</a>
+                                            <a href="<?= base_url('riwayat/delete/') . $item['id']; ?>" class="text-danger btn-delete">Delete</a>
                                         </div>
-                                    </td> -->
+                                    </td>
                                 </tr>
                             <?php endforeach ?>
                         <?php else: ?>
@@ -55,3 +55,26 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Konfirmasi sebelum menghapus data, gunakan jquery dan swal2
+    $(document).ready(function() {
+        $('.btn-delete').on('click', function(e) {
+            e.preventDefault();
+            const url = $(this).attr('href');
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
+            });
+        });
+    });
+</script>

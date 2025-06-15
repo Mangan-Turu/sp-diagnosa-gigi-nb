@@ -86,4 +86,19 @@ class Riwayat_model extends CI_Model
         $this->db->update($this->table_def, ['penyakit_id' => $penyakit_id, 'probabilitas' => $probabilitas]);
         return $this->db->affected_rows() > 0;
     }
+
+    public function delete($riwayat_id)
+    {
+        // delete riwayat detail
+        $this->db->where('riwayat_id', $riwayat_id);
+        $this->db->delete($this->table_def_detail);
+
+        // check if detail deleted
+        if ($this->db->affected_rows() > 0) {
+            $this->db->where('id', $riwayat_id);
+            $this->db->delete($this->table_def);
+            return $this->db->affected_rows() > 0;
+        }
+        return false;
+    }
 }

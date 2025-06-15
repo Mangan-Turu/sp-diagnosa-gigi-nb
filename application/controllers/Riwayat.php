@@ -241,4 +241,20 @@ class Riwayat extends My_Controller
 
         return $output;
     }
+
+    public function delete($id)
+    {
+        // select apakah datanya ada ? 
+        $riwayat = $this->Riwayat_model->get_by_id($id);
+        if (!$riwayat) {
+            $this->session->set_flashdata('error', 'Data riwayat tidak ditemukan.');
+            redirect('riwayat');
+        }
+
+        // delete data
+        $this->Riwayat_model->delete($id);
+
+        $this->session->set_flashdata('message', 'Data riwayat berhasil dihapus.');
+        redirect('riwayat');
+    }
 }
